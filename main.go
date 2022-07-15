@@ -12,6 +12,9 @@ func main() {
 	// create a fyne app
 	a := app.New()
 
+	// use custom themes
+	// a.Settings().SetTheme(&myTheme{})
+
 	// create a window for the app
 	win := a.NewWindow("markMEdown!")
 	// get the user interface
