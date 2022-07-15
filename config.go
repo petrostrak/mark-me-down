@@ -23,3 +23,17 @@ func (c *config) makeUI() (edit *widget.Entry, preview *widget.RichText) {
 
 	return
 }
+
+func (c *config) createMenuItems(win fyne.Window) {
+	openMenuItem := fyne.NewMenuItem("Open...", func() {})
+
+	saveMenuItem := fyne.NewMenuItem("Save", func() {})
+
+	saveAsMenuItem := fyne.NewMenuItem("Save as...", func() {})
+
+	fileMenu := fyne.NewMenu("File", openMenuItem, saveMenuItem, saveAsMenuItem)
+
+	menu := fyne.NewMainMenu(fileMenu)
+
+	win.SetMainMenu(menu)
+}

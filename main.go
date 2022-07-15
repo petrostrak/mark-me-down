@@ -16,6 +16,7 @@ func main() {
 	win := a.NewWindow("markMEdown!")
 	// get the user interface
 	edit, preview := cfg.makeUI()
+	cfg.createMenuItems(win)
 
 	// set the content of the window
 	win.SetContent(
