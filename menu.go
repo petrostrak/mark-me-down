@@ -2,10 +2,14 @@ package main
 
 import (
 	"io"
+	"strings"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/dialog"
+	"fyne.io/fyne/v2/storage"
 )
+
+var filter = storage.NewExtensionFileFilter([]string{".md", ".MD"})
 
 func (c *config) saveAsFunc(win fyne.Window) func() {
 	return func() {
@@ -20,6 +24,11 @@ func (c *config) saveAsFunc(win fyne.Window) func() {
 				return
 			}
 
+			if !strings.HasSuffix(strings.ToLower(w.URI().String()), ".md") {
+				dialog.ShowInformation("Error", "Please name your file with a .md extension.", win)
+				return
+			}
+
 			// save file
 			w.Write([]byte(c.EditWidget.Text))
 			// keep track of what the current file is
@@ -31,6 +40,8 @@ func (c *config) saveAsFunc(win fyne.Window) func() {
 			c.SaveMenuItem.Disabled = false
 		}, win)
 
+		saveDialog.SetFileName("untitle.md")
+		saveDialog.SetFilter(filter)
 		saveDialog.Show()
 	}
 }
@@ -66,6 +77,7 @@ func (c *config) openFunc(win fyne.Window) func() {
 			c.SaveMenuItem.Disabled = false
 		}, win)
 
+		openDialog.SetFilter(filter)
 		openDialog.Show()
 	}
 }
