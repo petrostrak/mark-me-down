@@ -81,3 +81,18 @@ func (c *config) openFunc(win fyne.Window) func() {
 		openDialog.Show()
 	}
 }
+
+func (c *config) saveFunc(win fyne.Window) func() {
+	return func() {
+		if c.CurrentFile != nil {
+			write, err := storage.Writer(c.CurrentFile)
+			if err != nil {
+				dialog.ShowError(err, win)
+				return
+			}
+
+			write.Write([]byte(c.EditWidget.Text))
+			defer write.Close()
+		}
+	}
+}
