@@ -28,8 +28,10 @@ func (c *config) createMenuItems(win fyne.Window) {
 	openMenuItem := fyne.NewMenuItem("Open...", func() {})
 
 	saveMenuItem := fyne.NewMenuItem("Save", func() {})
+	c.SaveMenuItem = saveMenuItem
+	c.SaveMenuItem.Disabled = true
 
-	saveAsMenuItem := fyne.NewMenuItem("Save as...", func() {})
+	saveAsMenuItem := fyne.NewMenuItem("Save as...", c.saveAsFunc(win))
 
 	fileMenu := fyne.NewMenu("File", openMenuItem, saveMenuItem, saveAsMenuItem)
 
