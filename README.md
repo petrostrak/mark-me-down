@@ -9,7 +9,7 @@ markMEdown! is a MarkDown editor written in GO with Fyne
 
 * Extract markMEdown.tar.xz
     
-    `mdkir markMEdown && tar -xvf markMEdown.tar.xz -C markMEdown`
+    `mkdir markMEdown && tar -xvf markMEdown.tar.xz -C markMEdown`
 
 * Mount and run make file:
 
